@@ -1,0 +1,30 @@
+# General
+*.log
+*.tmp
+*.bak
+.DS_Store
+*.env
+
+# Firebase
+firebase-debug.log
+.firebaserc
+
+# Android
+.gradle/
+.idea/
+build/
+local.properties
+*.apk
+
+# Web
+node_modules/
+dist/
+.vscode/
+
+# Java Desktop App
+*.class
+out/
+bin/
+
+# OS-specific
+Thumbs.db
