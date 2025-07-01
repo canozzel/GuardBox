@@ -8,6 +8,7 @@ Developed as part of the “Special Topics in Computer Engineering (CEN309)” c
 
 ## 🔐 Key Features
 
+
 - 📦 **Package Detection** – Uses a load cell to detect the presence of real packages
 - 🔒 **Smart Locking** – Automatically locks when a package is placed
 - ⚠️ **Tamper Detection** – Vibration sensor detects tampering and triggers instant alerts
