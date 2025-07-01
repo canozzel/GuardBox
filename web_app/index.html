@@ -1,0 +1,351 @@
+1
+2 <! DOCTYPE html >
+3 <html lang ="en" data - theme =" dark ">
+4 <head >
+5 <meta charset ="UTF -8">
+6 <meta name =" viewport " content =" width = device -width , initial - scale
+=1.0 ">
+7 <title > GuardBox Web Panel </ title >
+8 <script src =" https :// cdn. tailwindcss . com "> </ script >
+9 <link href =" https :// fonts . googleapis . com / css2 ? family = Inter :
+wght@300 ;400;500;600;700& display = swap " rel=" stylesheet ">
+10 <script src =" https :// unpkg .com/ feather - icons "> </ script >
+11 <style >
+12 body {
+13 font - family : ' Inter ' , sans - serif ;
+14 transition : background - color 0.3 s ease ;
+15 }
+16 . card {
+17 backdrop - filter : blur (10 px ) ;
+18 transition : all 0.3 s ease ;
+19 }
+20 . notification - enter {
+21 animation : fadeIn 0.5 s ease - out ;
+22 }
+23 @keyframes fadeIn {
+24 from { opacity : 0; transform : translateY ( -10 px ) ; }
+25 to { opacity : 1; transform : translateY (0) ; }
+26 }
+27 . btn {
+28 transition : all 0.2 s ease ;
+29 }
+30 . glow {
+31 box - shadow : 0 0 15 px rgba (59 , 130 , 246 , 0.5) ;
+32 }
+33 . lock - btn {
+34 position : relative ;
+35 overflow : hidden ;
+36 }
+37 . lock - btn : after {
+38 content : ' ';
+39 position : absolute ;
+40 top : 0;
+41 left : 0;
+42 width : 100%;
+43 height : 100%;
+44 background : rgba (255 , 255 , 255 , 0.1) ;
+45 transform : translateX ( -100%) ;
+46 transition : transform 0.3 s ease ;
+47 }
+48 . lock - btn : hover : after {
+49 transform : translateX (0) ;
+50 }
+51 </ style >
+52 </ head >
+53 <body id="app " class ="bg - gradient -to -br from -gray -900 via -gray
+-800 to -gray -900 text - white min -h- screen flex flex -col
+transition - colors duration -300 ">
+54 <! -- Header -->
+55 < header id=" header " class ="bg -gray -950 bg - opacity -70 backdrop -
+blur -md text - white shadow -lg p -5 fixed w- full z -10">
+56 <div class =" container mx - auto flex justify - between items - center "
+>
+57 <div class =" flex items - center gap -4">
+58 <div class ="bg -blue -500 p -2 rounded -lg">
+59 <img src ="guard -box. jpeg " alt=" GuardBox Logo " class ="w -8 h -8
+rounded -md">
+60 </div >
+61 <h1 class ="text -2 xl font - bold tracking - tight "> GuardBox </h1 >
+62 </div >
+63 <div class =" flex items - center gap -6">
+64 <button onclick =" toggleTheme ()" class ="text -sm bg -gray -800 hover
+:bg -gray -700 text - white px -4 py -2 rounded -lg transition -all
+flex items - center gap -2">
+65 <i data - feather ="sun" class ="w -4 h -4"> </i>
+66 <span > Theme </ span >
+67 </ button >
+68 <div class =" flex items - center gap -3">
+69 <span id="user - label " class ="text -gray -300 hidden md: block "> User
+: user </ span >
+70 <div class ="bg -blue -500 rounded - full p -1">
+71 <img src ="pp. jpeg " class =" rounded - full w -8 h -8" alt =" User ">
+72 </div >
+73 </div >
+74 </div >
+75 </div >
+76 </ header >
+77
+78 <! -- Main Content -->
+79 < main class ="flex - grow container mx - auto pt -24 pb -6 px -4">
+80 <div class =" grid grid -cols -1 md:grid -cols -2 gap -8">
+81 <! -- Box Status Card -->
+82 <div id=" boxCard " class =" card bg -gray -900 bg - opacity -60 rounded
+-2 xl shadow -xl p -8 flex flex - col items - center justify - center
+hover : glow transform transition -all hover :scale -102 hover : -
+translate -y -1">
+83 <h2 id=" boxTitle " class ="text -xl font - semibold mb -6 text -blue
+-400 flex items - center gap -2">
+84 <i data - feather =" activity " class ="w -5 h -5"> </i>
+85 Box Status
+86 </h2 >
+87 <div class =" flex flex -col items - center ">
+88 <div class ="bg -gray -800 p -6 rounded - full mb -6">
+89 <i data - feather ="box" class ="w -16 h -16 text -green -400 "> </i>
+90 </div >
+91 <div id=" boxStatus " class ="text -3 xl font - bold text -green -400 ">
+Empty </div >
+92 </div >
+93 </div >
+94
+95 <! -- Lock Control Card -->
+96 <div id=" lockCard " class =" card bg -gray -900 bg - opacity -60 rounded
+-2 xl shadow -xl p -8 flex flex - col items - center justify - center
+hover : glow transform transition -all hover :scale -102 hover : -
+translate -y -1">
+97 <h2 id=" lockTitle " class ="text -xl font - semibold mb -6 text -blue
+-400 flex items - center gap -2">
+98 <i data - feather =" shield " class ="w -5 h -5"> </i>
+99 Lock Control
+100 </h2 >
+101 <div class =" flex flex -col items - center mb -6">
+102 <div class ="bg -gray -800 p -6 rounded - full mb -6">
+103 <i id=" lockIcon " data - feather =" lock " class ="w -16 h -16 text -red
+-400 "> </i>
+104 </div >
+105 <div id=" lockStatus " class ="text -2 xl text -red -400 "> Locked </div >
+106 </div >
+107 <div class =" flex gap -4 w- full max -w-xs">
+108 <button onclick =" unlock ()" class ="lock - btn bg - gradient -to -r from
+-green -500 to -green -600 text - white px -6 py -3 rounded -xl
+shadow -lg transition - all hover :shadow -green -500/50 flex -1
+flex justify - center items - center gap -2">
+109 <i data - feather =" unlock " class ="w -5 h -5"> </i>
+110 Unlock
+111 </ button >
+112 </div >
+113 </div >
+114 </div >
+115
+116 <! -- Notifications -->
+117 < section class ="mt -8">
+118 <div id=" notifCard " class =" card bg -gray -900 bg - opacity -60
+rounded -2 xl shadow -xl p -8 hover : glow transform transition -all
+ hover :scale -102 ">
+119 <div class =" flex flex - wrap items - center justify - between mb -6 gap
+-2">
+120 <h2 id=" notifTitle " class ="text -xl font - semibold text -blue -400
+flex items - center gap -2">
+121 <i data - feather =" bell " class ="w -5 h -5"> </i>
+122 Recent Notifications
+123 </h2 >
+124 <button onclick =" clearNotifications ()" id=" clearBtn " class ="text
+-red -400 hover :text -red -600 font - semibold flex items - center
+gap -1">
+125 <i data - feather ="trash -2" class ="w -4 h -4"> </i>
+126 Clear
+127 </ button >
+128 </div >
+129 <ul id=" notifications " class ="space -y -3 max -h -64 overflow -y- auto
+ pr -2">
+130 <li class =" notification - item bg -gray -800 bg - opacity -70 text -
+white p -4 rounded -xl shadow -sm flex items - center gap -3 w- full
+ border -l -4 border -blue -400 ">
+131 <i data - feather =" package " class ="w -5 h -5 text -blue -400 "> </i>
+132 <span class ="flex -1"> Package delivered . </ span >
+133 <span class ="text -xs text -gray -400 "> Just now </ span >
+134 </li >
+135 <li class =" notification - item bg -gray -800 bg - opacity -70 text -
+white p -4 rounded -xl shadow -sm flex items - center gap -3 w- full
+ border -l -4 border -green -400 ">
+136 <i data - feather =" unlock " class ="w -5 h -5 text -green -400 "> </i>
+137 <span class ="flex -1"> Unlocked . </ span >
+138 <span class ="text -xs text -gray -400 ">5 m ago </ span >
+139 </li >
+140 <li class =" notification - item bg -gray -800 bg - opacity -70 text -
+white p -4 rounded -xl shadow -sm flex items - center gap -3 w- full
+ border -l -4 border -red -400 ">
+141 <i data - feather ="alert - circle " class ="w -5 h -5 text -red -400 "> </i>
+142 <span class ="flex -1"> Vibration detected ! </ span >
+143 <span class ="text -xs text -gray -400 "> 15 m ago </ span >
+144 </li >
+145 </ul >
+146 </div >
+147 </ section >
+148 </ main >
+149
+150
+151 <! -- Footer -->
+152 < footer class ="bg -gray -950 bg - opacity -70 text -gray -400 text -
+center py -4 text -sm">
+153 <div class =" container mx - auto ">
+154 GuardBox Security Dashboard & copy ; 2025
+155 </div >
+156 </ footer >
+157
+158 <! -- Script -->
+159 <script >
+160 feather . replace () ;
+161
+162 function unlock () {
+163 document . getElementById ( ' lockStatus ') . innerText = '
+Unlocked ';
+164 document . getElementById ( ' lockStatus ') . classList . remove ( '
+text - red -400 ') ;
+165 document . getElementById ( ' lockStatus ') . classList . add ( '
+text - green -400 ') ;
+166 const lockIcon = document . getElementById ( ' lockIcon ') ;
+167 lockIcon . setAttribute ( ' data - feather ' , ' unlock ') ;
+168 feather . replace () ;
+169 addNotification ( ' Unlocked . ' , ' unlock ' , ' text - green -400 ' ,
+' border - green -400 ') ;
+170 }
+171
+172 function lock () {
+173 document . getElementById ( ' lockStatus ') . innerText = '
+Locked ';
+174 document . getElementById ( ' lockStatus ') . classList . remove ( '
+text - green -400 ') ;
+175 document . getElementById ( ' lockStatus ') . classList . add ( '
+text - red -400 ') ;
+176 const lockIcon = document . getElementById ( ' lockIcon ') ;
+177 lockIcon . setAttribute ( ' data - feather ' , ' lock ') ;
+178 feather . replace () ;
+179 addNotification ( ' Locked . ' , ' lock ' , ' text - red -400 ' , '
+border - red -400 ') ;
+180 }
+181
+182 function addNotification ( message , icon = ' bell ' , color = ' text -
+blue -400 ' , borderColor = ' border - blue -400 ') {
+183 const notifications = document . getElementById ( '
+notifications ') ;
+184 const li = document . createElement ( ' li ') ;
+185 const isDark = document . documentElement . getAttribute ( '
+data - theme ') === ' dark ';
+186 const bgColor = isDark ? 'bg - gray -800 bg - opacity -70 ' : '
+bg - gray -200 bg - opacity -70 ';
+187 const textColor = isDark ? ' text - white ' : ' text - black ';
+188 const timeText = ' Just now ';
+189 li . className = notification - item $ { bgColor } $ { textColor }
+p -4 rounded - xl shadow - sm flex items - center gap -3 w -
+full notification - enter border -l -4 $ { borderColor };
+190 li . innerHTML = <i data - feather ="${ icon }" class ="w -5 h -5
+${ color }"> </i> <span class ="flex -1">$ { message } </ span > <
+span class ="text -xs text -gray -400 ">$ { timeText } </ span >
+;
+191 notifications . prepend ( li ) ;
+192 feather . replace () ;
+193 }
+194
+195 function clearNotifications () {
+196 document . getElementById ( ' notifications ') . innerHTML = ' ';
+197 }
+198
+199 function applyNotificationTheme () {
+200 const isDark = document . documentElement . getAttribute ( '
+data - theme ') === ' dark ';
+201 document . querySelectorAll ( '. notification - item ') . forEach (
+el = > {
+202 el . classList . remove ( ' bg - gray -800 ' , 'bg - gray
+-200 ' , ' text - white ' , ' text - black ' , 'bg -
+opacity -70 ') ;
+203 if ( isDark ) {
+204 el . classList . add ( ' bg - gray -800 ' , 'bg -
+opacity -70 ' , ' text - white ') ;
+205 } else {
+206 el . classList . add ( ' bg - gray -200 ' , 'bg -
+opacity -70 ' , ' text - black ') ;
+207 }
+208 }) ;
+209 }
+210
+211 function toggleTheme () {
+212 const html = document . documentElement ;
+213 const body = document . getElementById ( ' app ') ;
+214 const isDark = html . getAttribute ( ' data - theme ') === ' dark
+';
+215
+216 html . setAttribute ( ' data - theme ' , isDark ? ' light ' : ' dark
+') ;
+217 body . className = isDark
+218 ? 'bg - gradient - to - br from - blue -100 via - blue -50 to - white
+text - black min -h - screen flex flex - col transition -
+colors duration -300 '
+219 : 'bg - gradient - to - br from - gray -900 via - gray -800 to - gray
+-900 text - white min -h - screen flex flex - col transition
+- colors duration -300 ';
+220
+221 document . getElementById ( ' header ') . className = isDark
+222 ? 'bg - white bg - opacity -70 backdrop - blur - md text - black
+shadow - lg p -5 fixed w - full z -10 '
+223 : 'bg - gray -950 bg - opacity -70 backdrop - blur - md text - white
+shadow - lg p -5 fixed w - full z -10 ';
+224
+225 document . getElementById ( ' user - label ') . className = isDark
+? ' text - gray -600 hidden md : block ' : ' text - gray -300
+hidden md : block ';
+226
+227 const cardClass = isDark
+228 ? ' card bg - white bg - opacity -60 rounded -2 xl shadow - xl p -8
+flex flex - col items - center justify - center hover : glow
+transform transition - all hover : scale -102 hover : -
+translate -y -1 '
+229 : ' card bg - gray -900 bg - opacity -60 rounded -2 xl shadow - xl
+p -8 flex flex - col items - center justify - center hover :
+glow transform transition - all hover : scale -102 hover : -
+translate -y -1 ';
+230
+231 document . getElementById ( ' boxCard ') . className = cardClass
+;
+232 document . getElementById ( ' lockCard ') . className =
+cardClass ;
+233
+234 const notifCardClass = isDark
+235 ? ' card bg - white bg - opacity -60 rounded -2 xl shadow - xl p -8
+hover : glow transform transition - all hover : scale -102 '
+236 : ' card bg - gray -900 bg - opacity -60 rounded -2 xl shadow - xl
+p -8 hover : glow transform transition - all hover : scale
+-102 ';
+237
+238 document . getElementById ( ' notifCard ') . className =
+notifCardClass ;
+239
+240 const titleClass = isDark ? ' text - xl font - semibold mb -6
+text - blue -600 flex items - center gap -2 ' : ' text - xl
+font - semibold mb -6 text - blue -400 flex items - center
+gap -2 ';
+241 document . getElementById ( ' boxTitle ') . className =
+titleClass ;
+242 document . getElementById ( ' lockTitle ') . className =
+titleClass ;
+243 document . getElementById ( ' notifTitle ') . className =
+titleClass ;
+244
+245 document . getElementById ( ' clearBtn ') . className = isDark
+246 ? ' text - red -600 hover : text - red -800 font - semibold flex
+items - center gap -1 '
+247 : ' text - red -400 hover : text - red -600 font - semibold flex
+items - center gap -1 ';
+248
+249 document . querySelector ( ' footer ') . className = isDark
+250 ? 'bg - white bg - opacity -70 text - gray -600 text - center py -4
+text - sm '
+251 : 'bg - gray -950 bg - opacity -70 text - gray -400 text - center
+py -4 text - sm ';
+252
+253 applyNotificationTheme () ;
+254 }
+255
+256 window . onload = applyNotificationTheme ;
+257 </ script >
+258 </ body >
+259 </ html >
