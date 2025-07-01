@@ -55,9 +55,11 @@ GuardBox/
 
 ## 📸 Screenshots / Media
 
-![1746998554129](https://github.com/user-attachments/assets/cc036a0a-164d-4194-8173-f8cffcefc0a4)
-![1747706467912](https://github.com/user-attachments/assets/76ea97d5-369c-425e-827b-66833e00296b)
-![1747706494099](https://github.com/user-attachments/assets/278e82a4-e7bb-44b5-84f1-4d7482b6db93)
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/cc036a0a-164d-4194-8173-f8cffcefc0a4" width="300"/>
+  <img src="https://github.com/user-attachments/assets/76ea97d5-369c-425e-827b-66833e00296b" width="300"/>
+  <img src="https://github.com/user-attachments/assets/278e82a4-e7bb-44b5-84f1-4d7482b6db93" width="300"/>
+</p>
 
 ---
 
