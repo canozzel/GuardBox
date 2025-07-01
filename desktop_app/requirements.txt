@@ -1,0 +1,4 @@
+kivymd
+kivy
+pyrebase4
+plyer
