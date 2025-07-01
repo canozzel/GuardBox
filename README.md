@@ -65,11 +65,11 @@ GuardBox/
 
 ## 👨‍💻 Contributors
 
--
--
--
--
--
+- Can OZEL
+- Enes ISBILEN
+- Zihni AKIN
+- Arda SIMSEK
+- Furkan AKSOY
 
 ---
 
