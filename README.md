@@ -32,24 +32,28 @@ Developed as part of the “Special Topics in Computer Engineering (CEN309)” c
 
 ## 🏗️ System Architecture
 
-Package ➝ Load Cell ➝ ESP32 ➝ Firebase ➝ Mobile / Web / Desktop
-⬑ Vibration Sensor (tamper alert)
-⬑ RFID Module (unlock logic)
-⬑ Servo Motor (locking mechanism)
+- Package is placed in the box  
+- Load Cell detects package weight  
+- ESP32 microcontroller processes signals  
+  - Sends status to **Firebase Realtime Database**  
+  - Triggers **Vibration Sensor** to detect tampering  
+  - Uses **RFID Module** for unlock logic  
+  - Controls **Servo Motor** to lock/unlock  
+- Apps (Mobile / Web / Desktop) fetch real-time updates from Firebase
 
 ---
 
 ## 📁 Project Structure
 
-GuardBox/
-├── hardware/
-│ ├── esp32_firmware/
-│ └── circuit_diagram.png
-├── mobile_app/ # Android app (Kotlin)
-├── desktop_app/ # Kivy app (Python)
-├── web_app/ # Web interface (HTML/CSS/JS)
-├── firebase/ # Firebase config & rules
-├── README.md
+-GuardBox/
+-├── hardware/
+-│ ├── esp32_firmware/
+-│ └── circuit_diagram.png
+-├── mobile_app/ # Android app (Kotlin)
+-├── desktop_app/ # Kivy app (Python)
+-├── web_app/ # Web interface (HTML/CSS/JS)
+-├── firebase/ # Firebase config & rules
+-├── README.md
 
 ---
 
