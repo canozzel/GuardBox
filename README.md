@@ -84,6 +84,9 @@ GuardBox/
 This project was developed for the **“Special Topics in Computer Engineering (CEN309)”** course at **Maltepe University**, starting in **February 2025**.  
 GuardBox is still under active development with continuous feature upgrades and improvements.
 
+📄 [Project Report PDF](./docs/guardbox_report.pdf)
+
+
 ---
 
 ## 📌 License
