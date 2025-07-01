@@ -45,17 +45,18 @@ Developed as part of the “Special Topics in Computer Engineering (CEN309)” c
 
 ## 📁 Project Structure
 
+```
 GuardBox/
 ├── hardware/
-│ ├── esp32_firmware/
-│ └── circuit_diagram.png
-├── mobile_app/ # Android app (Kotlin)
-├── desktop_app/ # Kivy app (Python)
-├── web_app/ # Web interface (HTML/CSS/JS)
-├── firebase/ # Firebase config & rules
-├── screenshots/ # Media and demo files
-├── README.md
-
+│   ├── esp32_firmware/
+│   └── circuit_diagram.png
+├── mobile_app/         # Android app (Kotlin)
+├── desktop_app/        # Kivy app (Python)
+├── web_app/            # Web interface (HTML/CSS/JS)
+├── firebase/           # Firebase config & rules
+├── screenshots/        # Media and demo files
+└── README.md
+```
 ---
 
 ## 📸 Screenshots / Media
